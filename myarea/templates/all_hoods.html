@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{%load bootstrap4%}
+{% block content%}
+
+
+<div class="container-fluid" style="background-color:#e1c699; margin-top:50px;">
+    <div id="section1" class="container" style="padding-top:30px; height: 100vh;">
+        <div style="margin-left:5%; margin-right:5%;">
+            <div class="row" style="padding-top:15px; font-family: 'Raleway', sans-serif;">
+                {% for hood in hoods %}
+                <div class="card-4 col-md-3" style="margin-bottom:10px;">
+                    <div class="card" style="background-color:white;">
+                        <div class="card-header">
+                            <h6> <strong>{{hood.name.capitalize}}</strong></h6>
+                        </div>
+                        <div class="card-body" style="width: auto">
+                            <img src="{{hood.image}}" alt="">
+                            <p> <i class="fa fa-map-marker" aria-hidden="true"> {{ hood.location }}</i></p>
+                            <a href=" {% url 'joinHood' hood.id %}" class="btn btn-sm btn-success">Join</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
