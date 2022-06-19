@@ -34,7 +34,7 @@ def register(request):
         'form':form,
         'profForm': prof
     }
-    return render(request, 'auth/register.html', params)
+    return render(request, 'auth/signup.html', params)
 
 
 @login_required(login_url='login')  
@@ -90,7 +90,7 @@ def createHood(request):
         form = CreateHoodForm()
         return render(request,'new_hood.html',{"form":form})
 
-def search(request):
+def search_hood(request):
 
     if request.GET['hoods']:
         search_term = request.GET.get("hoods")
@@ -102,7 +102,6 @@ def search(request):
     else:
         message = "You Haven't searched for any item"
         return render(request,'search.html',locals())
-
 
   
 @login_required(login_url='login')  
