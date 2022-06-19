@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{%load bootstrap4 %}
+{% block content%}
+
+<div class="container-fluid" style="margin-top:60px;">
+
+    <div class="row">
+        <div class="container">
+            <h2><strong>{{hood.name.capitalize}}</strong></h2>
+            <hr>
+            <h4>Location: <strong>{{hood.location}}</strong></h4>
+            <p>{{hood.occupants}} Occupants</p>
+            <h4>{{hood.bio}}</h4>
+
+            <a class="btn btn-sm btn-success" href="{% url 'newpost' %}">Create a Post</a>
+            <a class="btn btn-sm btn-danger" href="  {% url 'business' %}">Add busines</a>
+
+            <p>
+                <div>
+                    <div class="row text-center">
+                        <small> Businesses in this hood</small>
+                        <hr>
+                    </div>
+
+                    <table class="table table-striped ">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Business</th>
+                                <th scope="col">Owner</th>
+                                <th scope="col">Neighbourhood</th>
+                                <th scope="col">Business Email</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if businesses %}
+                            {% for biz in businesses %}
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>{{biz.name.capitalize}}</td>
+                                <td>{{biz.user}}</td>
+                                <td>{{ biz.hood }}</td>
+                                <td>{{biz.email}}</td>
+                            </tr>
+                            {%endfor%}
+                            {% else %}
+                            <h4 class="text-center">No Business has been created for this hood yet. Be the first to
+                                create on <a href="{% url 'business' %}">here</a></h4>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                    {%if posts%}
+                    <div class="row">
+                        <div class="col-md-7"></div>
+                        <div class="col-md-5">
+                            <form class="" class="" action="{% url 'search' %}">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Search Forum" name="searchForum">
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                    <div class="row">
+                        {% for post in posts %}
+                        <div class="col-md-4">
+
+                            <div class="card" style="margin-bottom:50px">
+                                <h3 style="text-align: center">Post</h3>
+                                <div class="card-header"><strong>{{ post.title }}</strong>
+                                </div>
+                                <div class="card-footer">
+                                    <p>{{post.description}}</p>
+                                    <p><a href=""><i class="fa fa-" aria-hidden="true" style="color:black;"></i>Add
+                                            Comment</a></p>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    {% else %}
+                    <h4 class="text-center">No Post has been created for this hood yet. Be the first to create on <a
+                            href="{% url 'newpost' %}">here</a></h4>
+                    {% endif %}
+
+
+                    {%endblock%}
+                </div>
+        </div>
+
+    </div>
