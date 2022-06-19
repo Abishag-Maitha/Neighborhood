@@ -78,18 +78,18 @@ def createhood(request):
         return render(request,'new_hood.html',{"form":form})
 
 
-def search_hood(request):
+# def search_hood(request):
 
-    if request.GET['hoods']:
-        search_term = request.GET.get("hoods")
-        hoods = Neighbourhood.search_hood(search_term)
-        message = f"{search_term}"
+#     if request.GET['hoods']:
+#         search_term = request.GET.get("hoods")
+#         hoods = Neighbourhood.search_hood(search_term)
+#         message = f"{search_term}"
 
-        return render(request,'search.html',locals())
+#         return render(request,'search.html',locals())
 
-    else:
-        message = "You Haven't searched for any item"
-        return render(request,'search.html',locals())
+#     else:
+#         message = "You Haven't searched for any item"
+#         return render(request,'search.html',locals())
 
   
 @login_required(login_url='login')  
@@ -124,20 +124,20 @@ def single_hood(request, hood_id):
     }
     return render(request, 'hood.html', params)
 
-def create_business(request):
-    current_user = request.user
-    print(Profile.objects.all())
-    owner = Profile.get_by_id(current_user)
-    if request.method == 'POST':
-        form = BusinessForm(request.POST,request.FILES)
-        if form.is_valid():
-            new_biz=form.save(commit=False)
-            new_biz.user = current_user
-            new_biz.save()
-            return redirect(index)
-    else:
-        form = BusinessForm()
-    return render(request,"businessform.html",locals())
+# def create_business(request):
+#     current_user = request.user
+#     print(Profile.objects.all())
+#     owner = Profile.get_by_id(current_user)
+#     if request.method == 'POST':
+#         form = BusinessForm(request.POST,request.FILES)
+#         if form.is_valid():
+#             new_biz=form.save(commit=False)
+#             new_biz.user = current_user
+#             new_biz.save()
+#             return redirect(index)
+#     else:
+#         form = BusinessForm()
+#     return render(request,"businessform.html",locals())
 
 
 @login_required(login_url='login')  
@@ -152,3 +152,18 @@ def leave_hood(request, id):
     request.user.profile.neighbourhood = None
     request.user.profile.save()
     return redirect('hoods')
+
+def search_business(request):
+    if request.method == 'GET':
+        name = request.GET.get("title")
+        results = Business.objects.filter(name__icontains=name).all()
+        print(results)
+        message = f'name'
+        params = {
+            'results': results,
+            'message': message
+        }
+        return render(request, 'search.html', params)
+    else:
+        message = "You haven't searched for any business in the category"
+    return render(request, "results.html")
