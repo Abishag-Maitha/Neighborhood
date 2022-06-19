@@ -1,18 +1,12 @@
 {% extends 'base.html' %}
 {%load bootstrap4%}
 {% block content%}
-<html>
 
-<body style="background-color:rgb(228, 228, 228);">
+
+<div style="background-color:rgb(228, 228, 228);">
     <div class="container-fluid" style="margin-top:48px;background-image:url(/static/images/Neighbourhood-Plan-1200-x-400.png);height:35vh;">
-        <div style="float: right; color: rgb(240, 5, 103);font-family: 'Charmonman', cursive;">
-            <form class="form-inline my-2 my-lg-0" role="search" action="{% url 'search' %}">
-                <input type="text" class="form-control my-2 my-sm-0 search-input" name="search" placeholder="Search.."
-                    id="search">
-            </form>
-        </div>
         <div style="font-family: 'Charmonman', cursive;font-size:60px; padding-top:40px;color: rgb(24, 185, 37);">
-            <strong>Neighborhood Watch</strong>
+            <strong>Your Neighborhood</strong>
         </div>
     </div>
     <div class="container-fluid" style="margin-top: 15px;font-family: 'Nanum Gothic', sans-serif;">
@@ -30,47 +24,19 @@
                     <div>
                         <h4><strong>A private neighbourhood website designed just for you and your neighbours</strong></h4>
                         <h6><strong>Only real neighbours allowed</strong> </h6>
-                        <p>Each member must use their real name and verify their address, so you can trust who you are
-                            sharing information with.</p>
+                        <p>Each member must use their real name and verify their address, so you can trust who you are sharing information with.</p>
 
                         <h6><strong>Your personal information is safe</strong> </h6>
-                        <p>Your account is password protected, and we will never share your information with third
-                            parties. Website information is also not accessible through search engines.</p>
+                        <p>Your account is password protected, and we will never share your information with third parties. Website information is also not accessible through search engines.</p>
 
                         <h6><strong>A desire to improve our communities</strong> </h6>
-                        <p>This is something we want in our own lives, and something we believe can help create happier
-                            places to call home.</p>
-                        <div class="col-md-12" style="margin-top:15px;">
-                            <a href="#section1" style="color:white;" class="js-anchor-link button"><button class="block">Find your neighbourhood</button></a>
-                        </div>
+                        <p>This is something we want in our own lives, and something we believe can help create happierplaces to   home.</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="container-fluid" style="background-color:#4CAF50; margin-top:50px;">
-        <div id="section1" class="container" style="padding-top:30px; height: 100vh;">
-            <div style="margin-left:5%; margin-right:5%;">
-                <div class="row" style="padding-top:15px; font-family: 'Raleway', sans-serif;">
-                    {% for hood in hoods %}
-                    <div class="card-4 col-md-3" style="margin-bottom:10px;">
-                        <div class="card" style="background-color:white;">
-                            <div class="card-header">
-                                <h6> <strong>{{hood.name.capitalize}}</strong></h6>
-                            </div>
-                            <div class="card-body" style="width: auto">
-                                <img src="{{hood.image}}" alt="">
-                                <p> <i class="fa fa-map-marker" aria-hidden="true"> {{ hood.location }}</i></p>
-                                <a href=" {% url 'joinHood' hood.id %}" class="btn btn-sm btn-success">Join</a>
-                            </div>
-                        </div>
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
-    </div>
-</body>
+</div>
 
-</html>
+
 {% endblock %}
