@@ -1,0 +1,43 @@
+<html>
+
+<body>
+    <div class="navigation container-fluid" style=" height:48px; font-family: 'Raleway', sans-serif;">
+        <div class="">
+            <div class="row">
+                <div class="col-sm-6 col-md-6">
+                    <a href="/">HOME</a>
+                </div>
+                <div class="col-sm-6 col-md-6" style="text-align:right;">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6">
+                            <a href="{% url 'createHood' %}">CREATE HOOD</a></i> &nbsp; &nbsp;
+                            <a href="#section1" style="color:white;" class="js-anchor-link button">DISCOVER</a>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6">
+                                    <a href="{%url 'profile' user_id%}">{{user.username}}</a>
+                                    <img src="https://cdn3.iconfinder.com/data/icons/internet-and-web-4/78/internt_web_technology-13-512.png" alt="" width="15%">
+                                </div>
+                                <div class="col-md-6 col-sm-6" >
+                                    {% if user.is_authenticated %}
+                                    
+                                    <a href="{% url 'logout' %}">LOGOUT</a>
+
+                                    {% else %}
+
+                                    <a class='btn btn-default' href="{% url 'logout' %}">LOGIN /REGISTER</a>
+
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
