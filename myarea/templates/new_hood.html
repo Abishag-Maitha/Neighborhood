@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% load static%}
+
+  
+{% block content %}
+<div>
+    <h3>New Hood</h3>
+    {{form.media}}
+  <div style="background-color:rgb(228, 228, 228);">
+    <div class="container" style="padding-top:30px; margin-top:60px;">
+        <form action="" method="post" enctype="multipart/form-data">
+        {%csrf_token%}
+  
+        {% bootstrap_form form%}
+            <input type="submit" class="btn btn-success btn-lg" value="Post">
+        </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
