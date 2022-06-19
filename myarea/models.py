@@ -7,12 +7,38 @@ import datetime as dt
 
    
 # Create your models here.
+class Neighbourhood(models.Model):
+    name = models.CharField(max_length = 65)
+    location  = models.CharField(max_length=65)
+    occupants = models.PositiveIntegerField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='neighborhood')
+    image = CloudinaryField('image')
+    description = models.TextField()  
+    health = models.IntegerField(null=True, blank=True ,default=0)
+    
+    class Meta:
+        verbose_name_plural = 'Location'
+
+    @classmethod
+    def search_hood(cls, search_term):
+        hoods = cls.objects.filter(name__icontains=search_term)
+        return hoods
+
+    def __str__(self):
+        return f"{self.location}"
+
+    def save_hood(self):
+        self.save()
+
+    def delete_hood(self):
+        self.delete()
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
     profile_picture =CloudinaryField('image')
     bio = models.TextField(max_length=800, default="", blank=True)
-    name = models.CharField(blank=True, max_length=120)
     location = models.CharField(max_length=60, blank=True)
+    neighbourhood = models.ForeignKey(Neighbourhood, on_delete=models.SET_NULL, null=True, related_name='members', blank=True)
 
     def __str__(self):
         return f'{self.user.username} Profile'
@@ -36,30 +62,7 @@ class Profile(models.Model):
     def search_profile(cls, name):
         return cls.objects.filter(user__username__icontains=name).all()
 
-class Neighbourhood(models.Model):
-    name = models.CharField(max_length = 65)
-    location  = models.CharField(max_length=65)
-    occupants = models.PositiveIntegerField()
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='neighborhood')
-    image = CloudinaryField('image')
-    description = models.TextField()  
-      
-    class Meta:
-        verbose_name_plural = 'Location'
 
-    @classmethod
-    def search_hood(cls, search_term):
-        hoods = cls.objects.filter(name__icontains=search_term)
-        return hoods
-
-    def __str__(self):
-        return f"{self.location}"
-
-    def save_hood(self):
-        self.save()
-
-    def delete_hood(self):
-        self.delete()
 
 class Post(models.Model):
     title = models.CharField(max_length = 65)
@@ -87,6 +90,9 @@ class Business(models.Model):
 
     def delete_business(self):
         self.delete()
+    @classmethod
+    def search_business(cls, name):
+        return cls.objects.filter(name__icontains=name).all()
 
 class Join(models.Model):
     user_id = models.OneToOneField(User, on_delete=models.CASCADE)
