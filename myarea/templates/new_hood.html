@@ -1,21 +1,31 @@
-{% extends 'base.html' %}
-{% load bootstrap4 %}
-{% load static%}
+<div class="" style="font-family: 'Jost', sans-serif;">
+    {%extends "base.html"%} {% load bootstrap4 %} {% block content %}
+    <div class="container" style="font-family: 'Jost', sans-serif;">
+        <div class="row">
 
-  
-{% block content %}
-<div>
-    <h3>New Hood</h3>
-    {{form.media}}
-  <div style="background-color:rgb(228, 228, 228);">
-    <div class="container" style="padding-top:30px; margin-top:60px;">
-        <form action="" method="post" enctype="multipart/form-data">
-        {%csrf_token%}
-  
-        {% bootstrap_form form%}
-            <input type="submit" class="btn btn-success btn-lg" value="Post">
-        </form>
+            <div class="col-md-6 mx-auto card p-5 mt-5">
+                <div class="panel panel-default">
+
+                    <div class="panel-heading">
+                        <h3 class="text-center">New Hood</h3>
+                    </div>
+                    <div class="panel-body">
+
+                        <form action="{%url 'createhood' %}" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %} {% bootstrap_form form %}
+                            <div class="form-group">
+                                <input type="submit" class="btn btn-primary btn-sm" value="Post">
+                            </div>
+                            <input type="hidden" name="next" value="{{next}}">
+
+                        </form>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
+
+    {% endblock %}
 </div>
-{% endblock %}
