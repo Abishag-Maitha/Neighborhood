@@ -47,7 +47,6 @@ def profile(request,user_id=None):
     profile = Profile.objects.all()
     return render(request, 'profile.html', locals())
 
-
 @login_required(login_url='login')  
 def updateprofile(request):
 	if request.method == 'POST':
