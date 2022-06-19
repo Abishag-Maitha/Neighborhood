@@ -1,0 +1,28 @@
+{%extends 'base.html'%}
+{% load bootstrap4 %}
+{% block content%}
+    <div class="container">
+		<div class="row">
+		  <h3>Search results for the search term: <strong>{{message}}</strong></h3>
+
+		  {%if hoods%}
+		  	{% for hood in hoods %}
+				<div class="card">
+
+						<div class="card-title">
+							{{hood.name}}
+						</div>
+						<div class="card-body">
+							<p>{{hood.location}}</p>
+
+						</div>
+				</div>
+		{%endfor%}
+		{% else %}
+		<div class="col-md-6">
+				<h4 class="text-center">No neighbourhood with the name <strong>{{message}}</strong> exists! You can however create it <a href="{% url 'createHood' %}">here</a></h4>
+			</div>
+		{%endif%}
+	</div>
+    </div>
+{%endblock%}
