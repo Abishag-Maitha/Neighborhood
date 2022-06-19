@@ -20,10 +20,10 @@ class CreateHoodForm(forms.ModelForm):
         fields ='__all__'
 
 
-class ProfileForm(forms.ModelForm):
-    class Meta:
-        model = Profile
-        fields ='__all__'
+# class ProfileForm(forms.ModelForm):
+#     class Meta:
+#         model = Profile
+#         fields ='__all__'
 
 
 class BusinessForm(forms.ModelForm):
