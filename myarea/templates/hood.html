@@ -43,14 +43,14 @@
                                 <td>{{ biz.hood }}</td>
                                 <td>{{biz.email}}</td>
                             </tr>
-                            {%endfor%}
+                            {% endfor %}
                             {% else %}
                             <h4 class="text-center">No Business has been created for this hood yet. Be the first to
                                 create on <a href="{% url 'business' %}">here</a></h4>
                             {% endif %}
                         </tbody>
                     </table>
-                    {%if posts%}
+                    {% if posts %}
                     <div class="row">
                         <div class="col-md-7"></div>
                         <div class="col-md-5">
@@ -72,8 +72,7 @@
                                 </div>
                                 <div class="card-footer">
                                     <p>{{post.description}}</p>
-                                    <p><a href=""><i class="fa fa-" aria-hidden="true" style="color:black;"></i>Add
-                                            Comment</a></p>
+                                    <p><a href=""><i class="fa fa-" aria-hidden="true" style="color:black;"></i>Add Comment</a></p>
                                 </div>
                             </div>
                         </div>
@@ -84,9 +83,7 @@
                     <h4 class="text-center">No Post has been created for this hood yet. Be the first to create on <a
                             href="{% url 'newpost' %}">here</a></h4>
                     {% endif %}
-
-
-                    {%endblock%}
+                    {% endblock %}
                 </div>
         </div>
 
