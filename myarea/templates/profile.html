@@ -1,11 +1,20 @@
+
+{%include 'base.html'%}{% load static %} {% load bootstrap4 %}  {%block content%}
 <div class="class" style="font-family: 'Jost', sans-serif;">
-    {%include 'base.html'%} {%block content%}
+    
     <div class="col-sm-6 m-auto " style="font-family: 'Jost', sans-serif;">
         <div class=" content-section container" style="padding-top: 100px;">
             <div class="media">
                 <div class="col-sm-4">
                     <div style="width: 150px; height:150px; overflow:hidden; border-radius:50%" class="img-wrapper">
-                        <img width="120%" height="120%" src="{{profile.photo.url }}" alt="profile">
+                        {% if profile.profile_picture %}
+
+                        <img width="120%" height="120%" src="{{profile.profile_picture.url }}" alt="profile">
+
+                        {% else %}
+                        <img width="120%" height="120%" src="{% static '/images/avatar.png'%}" alt="profile">
+
+                        {% endif %}
                     </div>
                 </div>
                 <div class="media-body">
@@ -14,7 +23,7 @@
                     <p>{{profile.Bio}}</p>
                     <hr>
 
-                    <a href="{% url 'updateprofile' %}">
+                    <a href="{% url 'updateprofile' request.user.id %}">
                         <button class="btn btn-primary">Update Profile</button>
                     </a>
 

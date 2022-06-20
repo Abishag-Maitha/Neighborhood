@@ -3,7 +3,6 @@ from django.contrib.auth.decorators import login_required
 from myarea.models import Post,Profile,Neighbourhood,Business,Join
 from django.http import HttpResponse
 from .models import Post,Profile,Neighbourhood,Business,Join
-from django.contrib import messages
 from . forms import NewPostForm,CreateHoodForm,BusinessForm, RegistrationForm, profileForm
 from django.contrib.auth.models import User
 
@@ -40,10 +39,10 @@ def profile(request,id):
 def updateprofile(request,id):
     user = User.objects.get(id=id)
     if request.method == 'POST':
-        form = profileForm(request.POST,request.FILES, instance=request.user.profile)
+        form = profileForm(request.POST or None,request.FILES or None, instance=user.profile)
         if form.is_valid():
             form.save()
-            return redirect('profile', user.id)
+            return redirect('profile', request.user.id)
     else:
         form = profileForm()
         return render(request, 'updateprofile.html',{"form":form })
@@ -56,7 +55,7 @@ def create_post(request, hood_id):
         if form.is_valid():
             post = form.save(commit=False)
             post.hood = hood
-            post.user = request.user.profile
+            post.user = request.user
             post.save()
             return redirect('single_hood', hood.id)
     else:
@@ -97,13 +96,13 @@ def all_hoods(request):
     all_hoods = Neighbourhood.objects.all()
     all_hoods = all_hoods[::-1]
     params = {
-        'all_hoods': all_hoods,
+        'hoods': all_hoods,
     }
     return render(request, 'all_hoods.html', params)
 
 def single_hood(request, hood_id):
     hood = Neighbourhood.objects.get(id=hood_id)
-    business = Business.objects.filter(neighbourhood=hood)
+    business = Business.objects.filter(hood=hood)
     posts = Post.objects.filter(hood=hood)
     posts = posts[::-1]
     if request.method == 'POST':

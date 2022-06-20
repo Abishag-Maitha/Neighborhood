@@ -14,9 +14,9 @@
                             <h6> <strong>{{hood.name.capitalize}}</strong></h6>
                         </div>
                         <div class="card-body" style="width: auto">
-                            <img src="{{hood.image}}" alt="">
+                            <img src="{{hood.image.url}}" alt="" class="img-fluid">
                             <p> <i class="fa fa-map-marker" aria-hidden="true"> {{ hood.location }}</i></p>
-                            <a href=" {% url 'joinHood' hood.id %}" class="btn btn-sm btn-success">Join</a>
+                            <a href=" {% url 'single_hood' hood.id %}" class="btn btn-sm btn-success">Join</a>
                         </div>
                     </div>
                 </div>

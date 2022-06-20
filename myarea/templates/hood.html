@@ -12,9 +12,9 @@
             <p>{{hood.occupants}} Occupants</p>
             <h4>{{hood.bio}}</h4>
 
-            <a class="btn btn-sm btn-success" href="{% url 'newpost' %}">Create a Post</a>
-            <a class="btn btn-sm btn-danger" href="  {% url 'business' %}">Add busines</a>
-
+            <a class="btn btn-sm btn-success" href="{% url 'post' hood.id %}">Create a Post</a>
+            <a class="btn btn-sm btn-success" href="{% url 'join_hood' hood.id %}">Join This Hood</a>
+            <a class="btn btn-sm btn-success" href="{% url 'leave_hood' hood.id %}">Leave Hood</a>
             <p>
                 <div>
                     <div class="row text-center">
@@ -44,9 +44,8 @@
                                 <td>{{biz.email}}</td>
                             </tr>
                             {% endfor %}
-                            {% else %}
-                            <h4 class="text-center">No Business has been created for this hood yet. Be the first to
-                                create on <a href="{% url 'business' %}">here</a></h4>
+        
+                        
                             {% endif %}
                         </tbody>
                     </table>
@@ -81,7 +80,7 @@
 
                     {% else %}
                     <h4 class="text-center">No Post has been created for this hood yet. Be the first to create on <a
-                            href="{% url 'newpost' %}">here</a></h4>
+                            href="{% url 'post' hood.id %}">here</a></h4>
                     {% endif %}
                     {% endblock %}
                 </div>

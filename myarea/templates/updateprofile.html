@@ -6,7 +6,7 @@
     <h3>Update Profile</h3>
     {{form.media}}
     <div class="container" style="margin-top:100px; font-size:13px;font-family: 'K2D', sans-serif; ">
-        <form action="{%url 'updateprofile'%}" method="post" enctype="multipart/form-data">
+        <form method="post" enctype="multipart/form-data">
             {%csrf_token%}
             
             {% bootstrap_form form %}

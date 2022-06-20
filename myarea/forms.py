@@ -41,4 +41,4 @@ class RegistrationForm(UserCreationForm):
 class profileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields ='__all__'
+        fields =['profile_picture', 'bio', 'location']
