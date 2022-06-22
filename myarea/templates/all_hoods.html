@@ -3,12 +3,12 @@
 {% block content%}
 
 
-<div class="container-fluid" style="background-color:#e1c699; margin-top:50px;">
+<div class="container-fluid" style="background-color:rgb(228, 228, 228); margin-top:50px;">
     <div id="section1" class="container" style="padding-top:30px; height: 100vh;">
         <div style="margin-left:5%; margin-right:5%;">
             <div class="row" style="padding-top:15px; font-family: 'Raleway', sans-serif;">
                 {% for hood in hoods %}
-                <div class="card-4 col-md-3" style="margin-bottom:10px;">
+                <div class="card-4 col-md-4" style="margin-bottom:10px;">
                     <div class="card" style="background-color:white;">
                         <div class="card-header">
                             <h6> <strong>{{hood.name.capitalize}}</strong></h6>
