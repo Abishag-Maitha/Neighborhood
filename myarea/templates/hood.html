@@ -13,7 +13,6 @@
             <h4>{{hood.bio}}</h4>
 
             <a class="btn btn-sm btn-success" href="{% url 'post' hood.id %}">Create a Post</a>
-            <a class="btn btn-sm btn-success" href="{% url 'join_hood' hood.id %}">Join This Hood</a>
             <a class="btn btn-sm btn-success" href="{% url 'leave_hood' hood.id %}">Leave Hood</a>
             <p>
                 <div>
@@ -52,14 +51,7 @@
                     {% if posts %}
                     <div class="row">
                         <div class="col-md-7"></div>
-                        <div class="col-md-5">
-                            <form class="" class="" action="{% url 'search' %}">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Search Forum" name="searchForum">
-                                </div>
-
-                            </form>
-                        </div>
+                       
                     </div>
                     <div class="row">
                         {% for post in posts %}
